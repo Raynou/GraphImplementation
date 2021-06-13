@@ -15,6 +15,8 @@ public class App {
         grafo.deleteVert("BRA");
 
         grafo.printMatrix();
+
+        System.out.println(grafo.isAdjacent("BRA", "MEX"));
     }
 
 

@@ -18,12 +18,12 @@ public class Grafo<T>{
      * según el tipo de dato que se este manejando, aquí una lista de como se inicializan 
      * por defecto las variable dependiendo del tipo de dato al que pertenezcan:
      * 
-     * @String será el valor "".
-     * @int será el valor de 0.
-     * @double será el valor de 0.0.
-     * @float será el valor 0.0f.
-     * @boolean será false.
-     * @Object será null.
+     *  @String será el valor "".
+     *  @int será el valor de 0.
+     *  @double será el valor de 0.0.
+     *  @float será el valor 0.0f.
+     *  @boolean será false.
+     *  @Object será null.
      * 
      * Por lo tanto, creemos la matriz (que es de enteros) en el constructor, esta se verá 
      * de la siguiente manera:
@@ -35,7 +35,7 @@ public class Grafo<T>{
      * cuentas, estos existen.
      * 
      * 
-     * La  clase, principalmente, esta compuesta de dos arreglos importantes:
+     * Atributos de la clase.
      * 
      *  @array adjMat[][]. Es la matriz de adyacencia del grafo, y representa que nodos
      *  del gafo son adyacentes entre sí.
@@ -67,6 +67,15 @@ public class Grafo<T>{
     public Object[] vertInfo;
 
 
+
+
+
+    /** Constructor.
+     * 
+     * Cómo ya se explicó con anterioridad, no es necesario cargar los valores en la matriz y el vector en
+     * ceros, pues esto ya lo hace el compilador de Java por defecto.
+     * 
+      */
     public Grafo(int maxNodes, boolean isDirected){
         this.maxNodes = maxNodes;
         this.verQuant = 0;
@@ -77,7 +86,7 @@ public class Grafo<T>{
 
 
 
-    // Insertion and deletion methods
+    // Métodos de inserción y eliminación.
 
     /**
      * Al momento de añadir un vértice, lo que se esta haciendo en realidad es
@@ -197,6 +206,28 @@ public class Grafo<T>{
 
     // Uility methods
 
+    /** Método para obtener el index de un nodo.
+     * 
+     * @param a. Recibe la información que el nodo guarde
+     * en el arreglo vertInfo.
+     * 
+     * La idea es hacer una búsqueda lineal de la etiqueta (información)
+     * del nodo en el arreglo vertInfo, una vez obtenida, se retorna el valor
+     * del index.
+     * 
+     * Este método no esta pensado para ser usado por el usuario, más bien, es
+     * un método de utilidad que se utiliza en una variedad de métodos, en donde
+     * se requiera obtener la posición del index de cierto nodo, por ejemplo, 
+     * cuando se requiere verificar la adyacencia de dos nodos, pues no debemos
+     * olvidar, que los índices de vertInfo son los mismos para las  filas y las
+     * columnas de la matriz de adyacencia. Es decir, sí un nodo con la etiqueta
+     * "COL" se tiene en el index 0 del vector, entonces, este índice del vector,
+     * va a representar la posición 0 de la columnas y 0 de las filas en la matriz.
+     * 
+     * En caso de que no encuentre ningún vector con la etiqueta ingresada, se
+     * retornará un -1.
+      */
+
     private int getIndOfNode(T a){
         for (int i = 0; i < vertInfo.length; i++) {
             if(vertInfo[i] == a){
@@ -208,8 +239,49 @@ public class Grafo<T>{
 
     // Query methods
 
+    /** Comprobación de adyacencia.
+     * 
+     * Comprueba sí dos nodos tienen una adyacencia entre sí.
+     * 
+     * @param a. Representa la información de un nodo dentro del vector
+     * vertInfo.
+     * @param b. Tiene el mismo propósito que el parámetro a.
+     * 
+     * La idea es tomar la posición del primer y segundo nodo en el arreglo 
+     * vertInfo, después, estos index se guardan en las variables row y col.
+     * 
+     * Una vez se tienen las posiciones de los index de cada uno de los nodos, se
+     * pasan a comparar esas mismas posiciones en la matriz de adyacencia.
+     * 
+     * En caso de que el grafo sea dirigido, entonces se deberá evaluar que
+     * las posiciones row, col ó col, row en la matriz, sean diferentes a 0,
+     * representando que hay adyacencia.
+     * 
+     * En caso de que no sea dirigido, las dos condiciones anteriormente mencionadas
+     * se tendrán que cumplir para que se retorne un true.
+      */
     public boolean isAdjacent(T a, T b){
-        return true;
+        int row = getIndOfNode(a);
+        int col = getIndOfNode(b);
+
+        if(isDirected){
+            try {
+                if(adjMat[row][col] != 0 || adjMat[col][row] != 0){
+                    return true;
+                }
+            } catch (Exception e) {
+                System.out.println("El nodo o la arista no existe");
+            }
+        }else{
+            try {
+                if(adjMat[row][col] != 0 && adjMat[col][row] != 0){
+                    return true;
+                }
+            } catch (Exception e) {
+                System.out.println("El nodo o la arista no existe");
+            }
+        }
+        return false;
     }
 
 
