@@ -3,6 +3,38 @@ public class Grafo<T>{
     /** 
      * ¿Cómo funciona este grafo?
      * 
+     * Creación del grafo y la matriz:
+     * 
+     * Debemos entender, que como tal, el nodo va estar construido en base a dos
+     * estructura de datos estáticas, la primera será un areglo bidimensional, que va
+     * a representar las adyacencias de los nodos (o vértices, estos términos serán usados
+     * como sinónimos). El segundo será un arreglo de la información que contengan los
+     * nodos, y puede ser de cualquier tipo de dato primitivo que este disponible.
+     * 
+     * Los nodos del grafo, son creados al momento de darle un valor al
+     * @param maxNodes en el constructor, ¿por qué se hace esta afirmación? Bueno, como
+     * ya es bien sabido, al momento de crear un vector o una matriz en Java, el compilador
+     * por sí mismo inicializa todos los valores de las celdas con un valor predeterminado
+     * según el tipo de dato que se este manejando, aquí una lista de como se inicializan 
+     * por defecto las variable dependiendo del tipo de dato al que pertenezcan:
+     * 
+     * @String será el valor "".
+     * @int será el valor de 0.
+     * @double será el valor de 0.0.
+     * @float será el valor 0.0f.
+     * @boolean será false.
+     * @Object será null.
+     * 
+     * Por lo tanto, creemos la matriz (que es de enteros) en el constructor, esta se verá 
+     * de la siguiente manera:
+     * 
+     * @see adjMatExample.jpg
+     * 
+     * Por lo que, al ver esta ilustración, se puede interpretar como que los nodos ya están
+     * creados, solo que no contienen adyacencia ni información, no obstante, al fianl de
+     * cuentas, estos existen.
+     * 
+     * 
      * La  clase, principalmente, esta compuesta de dos arreglos importantes:
      * 
      *  @array adjMat[][]. Es la matriz de adyacencia del grafo, y representa que nodos
