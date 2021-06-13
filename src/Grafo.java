@@ -66,14 +66,22 @@ public class Grafo<T>{
 
 
 
-
     /**
-     * <h3>Constructor.</h3>
+     * <h3>Constructor, sin inicializar la matriz.</h3>
+     *<p>Con este constructor, simplemente se va a determinar sí el grafo es dirigido o no.</p>
+     * */
+    public Grafo(boolean isDirected){
+        this.isDirected = isDirected;
+        maxNodes = verQuant = 0;
+    }
+    /**
+     * <h3>Constructor con parámetros.</h3>
      *
      * Cómo ya se explicó con anterioridad, no es necesario cargar los valores en la matriz y el vector en
      * ceros, pues esto ya lo hace el compilador de Java por defecto.
      * 
       */
+
 
     public Grafo(int maxNodes, boolean isDirected){
         this.maxNodes = maxNodes;
@@ -250,8 +258,8 @@ public class Grafo<T>{
      * del index.</p>
      * 
      * <p>Este método no esta pensado para ser usado por el usuario, más bien, es
-     * un método de utilidad que se utiliza en una variedad de métodos, en donde
-     * se requiera obtener la posición del index de cierto nodo, por ejemplo, 
+     * un método de utilidad que se utiliza en una variedad de métodos de la clase,
+     * en donde se requiera obtener la posición del index de cierto nodo, por ejemplo,
      * cuando se requiere verificar la adyacencia de dos nodos, pues no debemos
      * olvidar, que los índices de vertInfo son los mismos para las  filas y las
      * columnas de la matriz de adyacencia. Es decir, sí un nodo con la etiqueta
