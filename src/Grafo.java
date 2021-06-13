@@ -289,8 +289,8 @@ public class Grafo<T>{
         for (int i = 0; i < 6; i++) {
             System.out.print(" ");
         }
-        for (int i = 0; i < vertInfo.length; i++) {
-            System.out.print(vertInfo[i] + "     ");
+        for (Object o : vertInfo) {
+            System.out.print(o + "     ");
         }
         System.out.println();
         for(int i=0; i< maxNodes; i++){
