@@ -109,8 +109,8 @@ public class Grafo<T>{
      * entonces primeramente se evaluará si este tiene o no adyacencia.
      * 
      * En caso de que el vértice no tenga ninguna adyacencia, simplemente
-     * el valor que guarda este se igualará a nulo y no se decrementará el
-     * valor de la variable vertQuant.
+     * el valor que guarda este en el arreglo vertInfo se igualará a nulo 
+     * y se decrementará el valor de la variable vertQuant.
      * 
      * En casi de que el vértice sí tenga una adyacencia, se procederá a igualar
      * todos los valores de las columnas y las filas correspondientes al 
@@ -149,6 +149,9 @@ public class Grafo<T>{
         else System.out.println("Arista ya existente");
     }
 
+
+
+    // TODO: Documentación aún no añadida para los siguientes métoodos.
 
     /**
      * Método para añadir una arista entre dos vértices que contengan información que no
