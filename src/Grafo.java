@@ -24,12 +24,7 @@ public class Grafo<T>{
      *  @float será el valor 0.0f.
      *  @boolean será false.
      *  @Object será null.
-     * 
-     * Por lo tanto, creemos la matriz (que es de enteros) en el constructor, esta se verá 
-     * de la siguiente manera:
-     * 
-     * @see adjMatExample.jpg
-     * 
+     *  
      * Por lo que, al ver esta ilustración, se puede interpretar como que los nodos ya están
      * creados, solo que no contienen adyacencia ni información, no obstante, al fianl de
      * cuentas, estos existen.
@@ -60,6 +55,7 @@ public class Grafo<T>{
      * 
      * 
      */
+
     public int maxNodes;
     public int verQuant;
     public boolean isDirected;
@@ -104,7 +100,8 @@ public class Grafo<T>{
     */
     public void addVert(T data){
         if(verQuant == maxNodes){
-            System.out.println("El grafo ya no contiene más vértices");
+            System.out.println("El grafo ya no puede contener más vértices");
+            System.exit(1);
         }else{
             vertInfo[verQuant] = data;
             verQuant++;
@@ -159,13 +156,27 @@ public class Grafo<T>{
     }
 
 
-
-    // TODO: Documentación aún no añadida para los siguientes métodos.
-
     /**
      * Método para añadir una arista entre dos vértices que contengan información que no
      * sea nula.
      * 
+     * Primero obtiene la pisición de los nodos a los que se desea añadir un vértice 
+     * para conectarlos entre sí, para esto se usan los parámetros:
+     * 
+     *  @param a
+     *  @param b
+     * 
+     * Para obtener la posición de cada uno de los índices de los vértices en el vertInfo y
+     * adjMat, se llama al método getIndOfNode(), cuya explicación de funcionamieto y propósito
+     * se indica en el comentario que esta sobre la definición del método anteriormente mencionado.
+     * 
+     * Después, se hace la verificación sí el nodo es dirigio o no, en caso de ser dirigido,
+     * simplemente se verifica si ya no hay alguna arista existente entra los nodos, en caso de este
+     * ser el caso, no se añade nada y se imprime un mensaje de alerta.
+     * 
+     * En caso de no ser dirigido y sí no existe una arista (es decir, que la posición adjMat[row][col]
+     * contenga un cero), entonces, se añade el valor de uno de vértice 'a' a vértice 'b' y viceversa, ya
+     * que no es dirigido.
      * 
      */
     public void addEdge(T a, T b){
@@ -173,38 +184,55 @@ public class Grafo<T>{
         int row = getIndOfNode(a);
         int col = getIndOfNode(b);
 
-        if(adjMat[row][col] != 1){
-            if(!isDirected){
+        if(isDirected){
+            if(adjMat[row][col] != 1){
+                adjMat[row][col] = 1;
+            }else{
+                System.out.println("Arista ya existente");
+            }
+        }else{
+            if(adjMat[row][col] != 1 ){
                 adjMat[row][col] = 1;
                 adjMat[col][row] = 1;
             }else{
-                adjMat[row][col] = 1;
-            }
-        }else{
                 System.out.println("Arista ya existente");
+            }
         }
-            
         
     }
+
+
+    /** Método para eliminar una arista.
+     * 
+     * Hace casi exactamente el mismo proceso que el método addEdge(), no obstante, en lugar de verificar
+     * sí la arista no existe, en este caso verificar sí la arista ya exista, en caso de no existir, no va 
+     * borrar nada (porque no hay nada que borrar) y simplemente se imprimirá un mensaje de alerta.
+     * 
+     * 
+      */
 
     public void deleteEdge(T a, T b){
         int row = getIndOfNode(a);
         int col = getIndOfNode(b);
 
-        if(adjMat[row][col] != 0){
-            if(!isDirected){
+        if(isDirected){
+            if(adjMat[row][col] != 0){
+                adjMat[row][col] = 0;
+            }else{
+                System.out.println("La arista entre los nodos ingresados no existe");
+            }
+        }else{
+            if(adjMat[row][col] != 0 ){
                 adjMat[row][col] = 0;
                 adjMat[col][row] = 0;
             }else{
-                adjMat[row][col] = 0;
+                System.out.println("La arista entre los nodos ingresados no existe");
             }
-        }else{
-            System.out.println("La arista no existe");
         }
     }
 
 
-    // Uility methods
+    // Métodos de utilidad
 
     /** Método para obtener el index de un nodo.
      * 
@@ -237,7 +265,7 @@ public class Grafo<T>{
         return -1;
     }
 
-    // Query methods
+    // Métodos de consulta
 
     /** Comprobación de adyacencia.
      * 
@@ -285,6 +313,11 @@ public class Grafo<T>{
     }
 
 
+    /** Simple método para imprimir la matriz de adyacencia
+     * 
+     * El método es sencillo, solo es un clásico proceso de imprimir un
+     * arreglo bidimensional, no obstante, se añade  un poco de formato.
+      */
     public void printMatrix(){
         for (int i = 0; i < 6; i++) {
             System.out.print(" ");
