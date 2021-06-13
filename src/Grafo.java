@@ -63,8 +63,8 @@ public class Grafo<T>{
     public int maxNodes;
     public int verQuant;
     public boolean isDirected;
-    public int adjMat[][];
-    public Object vertInfo[];
+    public int[][] adjMat;
+    public Object[] vertInfo;
 
 
     public Grafo(int maxNodes, boolean isDirected){
@@ -151,7 +151,7 @@ public class Grafo<T>{
 
 
 
-    // TODO: Documentación aún no añadida para los siguientes métoodos.
+    // TODO: Documentación aún no añadida para los siguientes métodos.
 
     /**
      * Método para añadir una arista entre dos vértices que contengan información que no
