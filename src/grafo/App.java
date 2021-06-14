@@ -65,6 +65,19 @@ public class App {
 
         // Ahora que se han añadido valores, el resultado esperado es "false".
         System.out.println(grafo.isEmpty() ? "El grafo esta vacío.":"El grafo no esta vacío.");
+
+        // Eliminación de la arista entre USA y COL.
+        grafo.deleteEdge("USA", "COL");
+
+        grafo.printMatrix();
+
+        System.out.println(grafo.isAdjacent("USA", "COL") ? "Hay adyacencia entre COL y USA":"No hay adyacencia"
+                + "entre COL y USA");
+
+        //Eliminación de BRA.
+
+        grafo.deleteVert("BRA");
+        grafo.printMatrix();
     
     }
 }

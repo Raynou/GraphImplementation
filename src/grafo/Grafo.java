@@ -351,14 +351,16 @@ public class Grafo<T>{
             System.out.print(" ");
         }
         for (Object o : vertInfo) {
-            System.out.print(o + "     ");
+            if (o != null)System.out.print(o + "     ");
         }
         System.out.println();
         for(int i=0; i< maxNodes; i++){
             System.out.println();
-            System.out.print(vertInfo[i]+"    ");
+            if (vertInfo[i] != null)System.out.print(vertInfo[i]+"    ");
             for(int j=0; j< maxNodes; j++){
-                System.out.print(adjMat[i][j] + "       " );        
+                if (vertInfo[i] != null && vertInfo[j] != null){
+                    System.out.print(adjMat[i][j] + "       " );
+                }
             }
             System.out.println();
             System.out.println();
