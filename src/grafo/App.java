@@ -37,7 +37,7 @@ public class App {
         Grafo<String> grafo = new Grafo<>(4, false);
 
         // Se verifica que sí el grafo esta vacío, en este caso no lo está, por lo que deberá imprimir "true"
-        System.out.println(grafo.isEmpty());
+        System.out.println(grafo.isEmpty() ? "El grafo esta vacío.":"El grafo no esta vacío.");
 
         grafo.addVert("MEX");
         grafo.addVert("COL");
@@ -55,12 +55,16 @@ public class App {
 
         // Se crea una arista entre COL y BRA
         grafo.addEdge("COL", "BRA");
-
-        // Se verifica la adyacencia de dos vértices, en este caso el resultado esperado es "true".
-        System.out.println(grafo.isAdjacent("USA", "COL"));
         
         // Se imprime la matriz de adyacencia.
         grafo.printMatrix();
+
+        // Se verifica la adyacencia de dos vértices, en este caso el resultado esperado es "true".
+        System.out.println(grafo.isAdjacent("USA", "COL") ? "Hay adyacencia entre COL y USA":"No hay adyacencia"
+                + "entre COL y USA");
+
+        // Ahora que se han añadido valores, el resultado esperado es "false".
+        System.out.println(grafo.isEmpty() ? "El grafo esta vacío.":"El grafo no esta vacío.");
     
     }
 }
