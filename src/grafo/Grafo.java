@@ -41,18 +41,13 @@ public class Grafo<T>{
      *  <p>-<var>vertInfo[]</var>. Es un arreglo asociativo del grafo, sirve para representar el
      *  contenido de los nodos, puede ser del tipo de dato que el usuario ingrese al 
      *  momento de indicarlo en la notación diamante.</p><br>
-     * 
-     * 
-     * <h3>Atributos de la clase:</h3><br>
      *  <p>-<var>maxNodes</var>: sirve para delimitar el tamaño máximo de nodos que va
-     *  tener el tamaño de la matriz de adyacencia y del grafo asociativo.</p>
-     * 
+     *  tener el tamaño de la matriz de adyacencia y del grafo asociativo.</p><br>
      *  <p>-<var>verQuant</var>: variable auxiliar, es utilizada para ir marcando la cantidad de
      *  vértices (nodos) del grafo que guardan un contenido, sin importar si
      *  tiene o no adyacencia. La variable se utiliza es esencial para los siguientes
-     *  métodos: <var>addVert()</var> y <var>deleteVert()</var>.</p>
-     *
-     * <p>-<var>isDirected</var>: booleano que determina sí el grafo es dirigido o no.</p>
+     *  métodos: <var>addVert()</var> y <var>deleteVert()</var>.</p><br>
+     * <p>-<var>isDirected</var>: booleano que determina sí el grafo es dirigido o no.</p><br>
      * 
      * 
      */
@@ -284,7 +279,7 @@ public class Grafo<T>{
      *
      * 
      * <p>La idea es tomar la posición del primer y segundo nodo en el arreglo
-     * <var>vertInfo</var>, después, estos index se guardan en las variables <var>row</var> y <var>col</var>.</p>
+     * <var>vertInfo</var>, después, estos index se guardan en las variables <var>aIndex</var> y <var>bIndex</var>.</p>
      * 
      * <p>Una vez se tienen las posiciones de los index de cada uno de los nodos, se
      * pasan a comparar esas mismas posiciones en la matriz de adyacencia.</p>
