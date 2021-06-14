@@ -74,6 +74,7 @@ public class Grafo<T>{
         this.isDirected = isDirected;
         maxNodes = verQuant = 0;
     }
+
     /**
      * <h3>Constructor con parámetros.</h3>
      *
@@ -81,8 +82,6 @@ public class Grafo<T>{
      * ceros, pues esto ya lo hace el compilador de Java por defecto.
      * 
       */
-
-
     public Grafo(int maxNodes, boolean isDirected){
         this.maxNodes = maxNodes;
         this.verQuant = 0;
@@ -126,18 +125,18 @@ public class Grafo<T>{
     /**
      * <h3>Método de eliminación de un vértice en un grafo.</h3>
      * 
-     * El concepto del método es sencillo, sí el vértice existe,
-     * entonces primeramente se evaluará si este tiene o no adyacencia.
+     * <p>El concepto del método es sencillo, sí el vértice existe,
+     * entonces primeramente se evaluará si este tiene o no adyacencia.</p>
      * 
-     * En caso de que el vértice no tenga ninguna adyacencia, simplemente
+     * <p>En caso de que el vértice no tenga ninguna adyacencia, simplemente
      * el valor que guarda este en el arreglo vertInfo se igualará a nulo 
-     * y se decrementará el valor de la variable vertQuant.
+     * y se decrementará el valor de la variable vertQuant.</p>
      * 
-     * En casi de que el vértice sí tenga una adyacencia, se procederá a igualar
+     * <p>En casi de que el vértice sí tenga una adyacencia, se procederá a igualar
      * todos los valores de las columnas y las filas correspondientes al 
-     * index del vértice a 0.
+     * index del vértice a 0.</p>
      * 
-     * @param data. Se usa para buscar el index correspondiente a el valor que se
+     * @param data Se usa para buscar el index correspondiente a el valor que se
      * desea eliminar en el arreglo de vertInfo, y también en la adjMat en caso
      * de que exista adyacencia.
      */
