@@ -13,7 +13,7 @@ public class Grafo<T>{
      * estructuras de datos estáticas, la primera será un arreglo bidimensional, que va
      * a representar las adyacencias de los nodos (o vértices, estos términos serán usados
      * como sinónimos). El segundo será un arreglo de la información que contengan los
-     * nodos, y puede ser de cualquier tipo de dato primitivo que este disponible.</p>
+     * nodos, y puede ser de cualquier tipo de dato que este disponible.</p>
      * 
      * <p>Los nodos del grafo, son creados al momento de darle un valor al
      * parámetro <var>maxNodes</var> en el constructor, ¿por qué se hace esta afirmación? Bueno, como
@@ -29,7 +29,7 @@ public class Grafo<T>{
      *  <p>-Para <var>boolean</var> será <var>false</var>.</p>
      *  <p>-Para <var>Object</var> será <var>null</var>.</p>
      *  
-     * <p>Por lo que, al ver esta ilustración, se puede interpretar como que los nodos ya están
+     * <p>Por lo que, se puede interpretar que los nodos ya están
      * creados, solo que no contienen adyacencia ni información, sin embargo, al final de
      * cuentas, estos existen.</p><br>
      * 
@@ -48,7 +48,7 @@ public class Grafo<T>{
      *  tener el tamaño de la matriz de adyacencia y del grafo asociativo.</p>
      * 
      *  <p>-<var>verQuant</var>: variable auxiliar, es utilizada para ir marcando la cantidad de
-     *  vértices (nodos) del grafo que tienen guardan un contenido, sin importar si
+     *  vértices (nodos) del grafo que guardan un contenido, sin importar si
      *  tiene o no adyacencia. La variable se utiliza es esencial para los siguientes
      *  métodos: <var>addVert()</var> y <var>deleteVert()</var>.</p>
      *
@@ -103,7 +103,7 @@ public class Grafo<T>{
      * momento de inicializarla en el constructor.</p>
      *
      * 
-     * <p>En caso de que la variable <var>vertQuant</var> sea igual a maxNodes (número de nodos
+     * <p>En caso de que la variable <var>vertQuant</var> sea igual a <var>maxNodes</var> (número de nodos
      * existentes en el grafo), simplemente no se añadirá ningún valor a <var>vertInfo[]</var>
      * y se imprimirá un mensaje de alerta.</p>
      *
@@ -125,7 +125,7 @@ public class Grafo<T>{
      * <h3>Método de eliminación de un vértice en un grafo.</h3>
      * 
      * <p>El concepto del método es sencillo, sí el vértice existe,
-     * entonces se igualarán eliminarán todas sus adyacencias.</p>
+     * eliminarán todas sus adyacencias.</p>
      *
      * <p>Para lograr esto, se consigue el valor el index del nodo en el array <var>verInfo</var>, para esto
      * se usa el método <var>getIndOfNode().</var></p>
@@ -135,6 +135,8 @@ public class Grafo<T>{
      *
      * <p>Al final, simplemente se igualará el valor guardado en el arreglo <var>vertInfo</var> a nulo y se
      * decrementará el valor de la variable <var>vertQuant.</var></p>
+     *
+     * <p>En caso de que el método <var>getIndOfNode()</var> retorne un -1, entonces se propagará une excepción.</p>
      * 
      * @param data Se usa para buscar el index correspondiente a el valor que se
      * desea eliminar en el arreglo de vertInfo, y también en la adjMat en caso
@@ -146,9 +148,7 @@ public class Grafo<T>{
         int vertPosition = getIndOfNode(data);
 
         if (vertPosition == -1) throw new Exception("Vértice no existente");
-        /* Se debe añadir un condicional que verifique
-        sí "data" tiene adyacencia entre "Inicio" y  "Fin" */
-        // Inicio
+
         for (int i = 0; i < adjMat.length; i++) {
             adjMat[vertPosition][i] = 0;
         }
@@ -156,18 +156,11 @@ public class Grafo<T>{
         for (int i = 0; i < adjMat.length; i++) {
             adjMat[i][vertPosition] = 0;
         }
-        // Fin
 
         vertInfo[vertPosition] = null;
 
         verQuant--;
 
-    }
-
-    @Deprecated void addEdge(int row, int col){
-        if(adjMat[row][col] != 1)
-            adjMat[row][col] = 1;
-        else System.out.println("Arista ya existente");
     }
 
 
@@ -183,8 +176,8 @@ public class Grafo<T>{
      * se indica en el comentario que esta sobre la definición del método anteriormente mencionado.</p><br>
      * 
      * <p>Después, se hace la verificación sí el nodo es dirigido o no, en caso de ser dirigido,
-     * simplemente se verifica si ya no hay alguna arista existente entra los nodos, en caso de este
-     * ser el caso, no se añade nada y se imprime un mensaje de alerta.</p><br>
+     * simplemente se verifica si ya no hay alguna arista existente entre los nodos, en caso de
+     * ser así, no se añade nada y se imprime un mensaje de alerta.</p><br>
      * 
      * <p>En caso de no ser dirigido y sí no existe una arista (es decir, que la posición <var>adjMat[row][col]</var>
      * contenga un cero), entonces, se añade el valor de uno de vértice 'a' a vértice 'b' y viceversa, ya
@@ -221,8 +214,8 @@ public class Grafo<T>{
      * <h3>Método para la eliminación de una arista</h3>
      * 
      * Hace casi exactamente el mismo proceso que el método <var>addEdge()</var>, sin embargo, en lugar de verificar
-     * sí la arista no existe, en este caso verificar sí la arista ya exista, en caso de no existir, no va 
-     * borrar nada (porque no hay nada que borrar) y simplemente se imprimirá un mensaje de alerta.
+     * sí la arista no existe, en caso de no existir, no va borrar nada (porque no hay nada que borrar) y simplemente
+     * se imprimirá un mensaje de alerta.
      * 
      * 
       */
@@ -261,7 +254,7 @@ public class Grafo<T>{
      * un método de utilidad que se utiliza en una variedad de métodos de la clase,
      * en donde se requiera obtener la posición del index de cierto nodo, por ejemplo,
      * cuando se requiere verificar la adyacencia de dos nodos, pues no debemos
-     * olvidar, que los índices de vertInfo son los mismos para las  filas y las
+     * olvidar, que los índices de <var>vertInfo</var> son los mismos para las  filas y las
      * columnas de la matriz de adyacencia. Es decir, sí un nodo con la etiqueta
      * "COL" se tiene en el index 0 del vector, entonces, este índice del vector,
      * va a representar la posición 0 de la columnas y 0 de las filas en la matriz.</p>
@@ -270,7 +263,7 @@ public class Grafo<T>{
      * retornará un -1.</p>
      *
      *@param a Recibe la información que el nodo guarde
-     *en el arreglo vertInfo.<br>
+     *en el arreglo <var>vertInfo</var>.<br>
       */
 
     private int getIndOfNode(T a){
@@ -291,29 +284,37 @@ public class Grafo<T>{
      *
      * 
      * <p>La idea es tomar la posición del primer y segundo nodo en el arreglo
-     * vertInfo, después, estos index se guardan en las variables <var>row</var> y <var>col</var>.</p>
+     * <var>vertInfo</var>, después, estos index se guardan en las variables <var>row</var> y <var>col</var>.</p>
      * 
      * <p>Una vez se tienen las posiciones de los index de cada uno de los nodos, se
      * pasan a comparar esas mismas posiciones en la matriz de adyacencia.</p>
      * 
      * <p>En caso de que el grafo sea dirigido, entonces se deberá evaluar que
-     * las posiciones <var>row</var>, <var>col</var> ó <var>col</var>, <var>row</var> en la matriz, sean diferentes a 0,
-     * representando que hay adyacencia.</p>
+     * las posiciones <var>bIndex</var>, <var>aIndex</var> ó <var>aIndex</var>, <var>bIndex</var> en la matriz,
+     * sean diferentes a 0, representando que hay adyacencia.</p>
      * 
      * <p>En caso de que no sea dirigido, las dos condiciones anteriormente mencionadas
      * se tendrán que cumplir para que se retorne un true.</p>
      *
-     * @param a Representa la información de un nodo dentro del vector
-     * vertInfo.
-     * @param b Tiene el mismo propósito que el parámetro a.
+     * @param a Representa la etiqueta de un nodo dentro del vector
+     * <var>vertInfo</var>.
+     * @param b Representa la etiqueta de un nodo dentro del vector <var>vertInfo</var>. <br><br>
+     *
+     *          <p>Básicamente, la idea es comprobar adyacencia entre un vértice <var>a</var> y  un
+     *          vértice <var>b</var>.</p>
+     *
+     *
       */
     public boolean isAdjacent(T a, T b){
-        int row = getIndOfNode(a);
-        int col = getIndOfNode(b);
+
+        //aIndex representa el índice del nodo 'a' dentro del arreglo vertInfo[],
+        //mientras que bIndex hace lo mismo, pero con el nodo 'b'.
+        int aIndex = getIndOfNode(a);
+        int bIndex = getIndOfNode(b);
 
         if(isDirected){
             try {
-                if(adjMat[row][col] != 0 || adjMat[col][row] != 0){
+                if(adjMat[aIndex][bIndex] != 0 || adjMat[bIndex][aIndex] != 0){
                     return true;
                 }
             } catch (Exception e) {
@@ -321,7 +322,7 @@ public class Grafo<T>{
             }
         }else{
             try {
-                if(adjMat[row][col] != 0 && adjMat[col][row] != 0){
+                if(adjMat[bIndex][aIndex] != 0 && adjMat[aIndex][bIndex] != 0){
                     return true;
                 }
             } catch (Exception e) {
@@ -330,6 +331,14 @@ public class Grafo<T>{
         }
         return false;
     }
+
+    /**
+     * <h3>Método de consulta: grafo vacío</h3>
+     *
+     * <p>Su funcionamiento es bastante sencillo, sí no existen vértices con información diferente a nula,
+     * es decir, que el arreglo <var>vertInfo[]</var> esta lleno de puros valores nulos, entonces eso significa que
+     * la variable <var>verQuant</var> es igual a 0, y sí ese es el caso, entonces este método retorna true.</p>
+     * */
 
     public boolean isEmpty(){
         return verQuant == 0;
@@ -351,7 +360,7 @@ public class Grafo<T>{
         }
         System.out.println();
         for(int i=0; i< maxNodes; i++){
-            System.out.println("");
+            System.out.println();
             System.out.print(vertInfo[i]+"    ");
             for(int j=0; j< maxNodes; j++){
                 System.out.print(adjMat[i][j] + "       " );        
